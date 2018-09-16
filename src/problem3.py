@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Rui Fang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -105,6 +105,23 @@ def run_test_problem3a():
 
 
 def problem3a(window, point, n):
+    sum = 0
+    for k in range(n):
+        l = rg.Line(point, rg.Point(point.x, point.y + 50))
+        if l.thickness <= 13:
+            l.thickness = 2*k + 1
+            sum = sum + l.thickness
+        if l.thickness > 13:
+            l.thickness = 13
+            sum = 49 + (k-6)*13
+        l.attach_to(window)
+        window.render()
+        point.x = point.x + 20
+        point.y = point.y + 10
+    return sum
+
+
+
     """
     See   problem3a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -165,6 +182,17 @@ def run_test_problem3b():
 
 
 def problem3b(m, point1):
+    win = rg.RoseWindow(400, 650)
+    for k in range(m):
+        n = 1+2*(k+1)
+        point2 = rg.Point(point1.x, point1.y)
+        problem3a(win, point2, n)
+        point1.y = point1.y + 60
+        win.continue_on_mouse_click()
+    win.close_on_mouse_click()
+
+
+
     """
     See   problem3b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:

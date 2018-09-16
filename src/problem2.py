@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Rui Fang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -31,7 +31,7 @@ import rosegraphics as rg
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_problem2a()
-    run_test_problem2b()
+    # run_test_problem2b()
 
 
 def run_test_problem2a():
@@ -73,6 +73,18 @@ def run_test_problem2a():
 
 
 def problem2a(circle, rectangle, window):
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    line = rg.Line(rg.Point(rectangle.corner_2.x, rectangle.corner_1.y),
+                   rg.Point(rectangle.corner_1.x, rectangle.corner_2.y), )
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
     """
     See   problem2a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -144,6 +156,18 @@ def run_test_problem2b():
 
 
 def problem2b(rect, n, delta, win):
+    rect.attach_to(win)
+    for k in range(n-1):
+        rectb = rg.Rectangle(rect.corner_1, rect.corner_2)
+        rectb.attach_to(win)
+        win.render()
+        win.continue_on_mouse_click()
+        rectb.corner_1.x = rectb.corner_1.x - delta
+        rectb.corner_1.y = rectb.corner_1.y - delta
+        rectb.corner_2.x = rectb.corner_2.x + delta
+        rectb.corner_2.y = rectb.corner_2.y + delta
+
+
     """
     See   problem2b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
