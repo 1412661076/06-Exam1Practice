@@ -183,14 +183,16 @@ def run_test_problem3b():
 
 def problem3b(m, point1):
     win = rg.RoseWindow(400, 650)
+    ans = 0
     for k in range(m):
         n = 1+2*(k+1)
         point2 = rg.Point(point1.x, point1.y)
-        problem3a(win, point2, n)
+        ans = ans + problem3a(win, point2, n)
         point1.y = point1.y + 60
         win.continue_on_mouse_click()
     win.close_on_mouse_click()
 
+    return ans
 
 
     """
